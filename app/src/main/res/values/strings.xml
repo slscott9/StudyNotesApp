@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StudyNotesApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_you_username">Enter you username</string>
+    <string name="enter_you_password_hint">Enter you password</string>
+    <string name="or_login_with_email">Or login with email</string>
+    <string name="log_in_btn">log in</string>
+    <string name="email_hint">email@gmail.com</string>
+    <string name="create_username">Create username</string>
+    <string name="sign_up">Sign up</string>
+</resources>
