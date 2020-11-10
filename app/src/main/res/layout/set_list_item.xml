@@ -15,8 +15,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:onClick="@{() -> clickListener.onClick(domainSet)">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardElevation="16dp"
+        app:cardCornerRadius="8dp"
+        android:onClick="@{() -> clickListener.onClick(domainSet)}">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,10 +55,12 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvTermCount"
                 app:layout_constraintTop_toBottomOf="@+id/tvTermCount" />
 

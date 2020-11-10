@@ -2,15 +2,14 @@ package com.example.studynotesapp.data.repo
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.studynotesapp.data.entities.Folder
-import com.example.studynotesapp.data.entities.FolderwithSets
+import com.example.studynotesapp.data.entities.*
 import com.example.studynotesapp.data.entities.Set
 import com.example.studynotesapp.data.local.LocalDataSource
 import com.example.studynotesapp.data.remote.RemoteDataSource
 import com.example.studynotesapp.network.dto.requests.AccountRequest
 import com.example.studynotesapp.network.dto.requests.AddFolder
-import com.example.studynotesapp.network.dto.responses.ServerResponse
-import com.example.studynotesapp.network.dto.responses.asDatabaseModel
+import com.example.studynotesapp.network.dto.requests.AddSet
+import com.example.studynotesapp.network.dto.responses.*
 import com.example.studynotesapp.other.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -69,6 +68,20 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun addSet(addSet: AddSet, userEmail: String) : Resource<Long> = withContext(Dispatchers.IO) {
+        try {
+            val setResponse = remoteDataSource.addSet(addSet, userEmail)
+            val setId = localDataSource.insertSet(setResponse.asDatabaseSet())
+            localDataSource.insertTerms(setResponse.terms.asDatabaseTermsList(setId))
+            Resource.success(setId)
+
+        }catch (e : Exception) {
+            Resource.error("Check network connection", -1L)
+        }
+    }
+
+
+
     override fun getAllFolderSetsWithId(folderId: Long): Flow<List<FolderwithSets>> {
         return localDataSource.getFolderSetsWithId(folderId)
     }
@@ -84,5 +97,14 @@ class RepositoryImpl @Inject constructor(
 
     override fun getAllSets(): Flow<List<Set>> {
         return localDataSource.getAllSets()
+    }
+
+    override fun getSetTermsWithId(setId: Long): LiveData<SetWithTerms> {
+        return localDataSource.getSetTermsWithId(setId)
+    }
+
+
+    override fun getTermsWithSetId(setId: Long): Flow<List<Term>> {
+        return localDataSource.getTermsWithSetId(setId)
     }
 }

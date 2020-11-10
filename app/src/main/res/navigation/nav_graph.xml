@@ -80,6 +80,9 @@
         <argument
             android:name="setId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_setDetailFragment_to_studyFragment"
+            app:destination="@id/studyFragment" />
     </fragment>
     <fragment
         android:id="@+id/setListFragment"
@@ -127,7 +130,11 @@
         android:id="@+id/addSetFragment"
         android:name="com.example.studynotesapp.ui.add.AddSetFragment"
         android:label="fragment_add_set"
-        tools:layout="@layout/fragment_add_set" />
+        tools:layout="@layout/fragment_add_set" >
+        <action
+            android:id="@+id/action_addSetFragment_to_setDetailFragment"
+            app:destination="@id/setDetailFragment" />
+    </fragment>
     <dialog
         android:id="@+id/addFolderDialogFragment"
         android:name="com.example.studynotesapp.ui.add.AddFolderDialogFragment"
@@ -137,4 +144,13 @@
             android:id="@+id/action_addFolderDialogFragment_to_folderDetailFragment"
             app:destination="@id/folderDetailFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/studyFragment"
+        android:name="com.example.studynotesapp.ui.study.StudyFragment"
+        android:label="fragment_study"
+        tools:layout="@layout/fragment_study" >
+        <argument
+            android:name="setId"
+            app:argType="long" />
+    </fragment>
 </navigation>

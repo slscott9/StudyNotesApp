@@ -13,6 +13,12 @@ data class DomainFolder(
     val termCount: String
 )
 
+
+data class Term(
+        val term: String,
+        val answer : String
+)
+
 fun List<Folder>.asDomainFolderList() : List<DomainFolder> {
     return map {
         DomainFolder(

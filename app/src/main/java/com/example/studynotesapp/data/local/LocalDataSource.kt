@@ -1,8 +1,8 @@
 package com.example.studynotesapp.data.local
 
 import androidx.lifecycle.LiveData
-import com.example.studynotesapp.data.entities.Folder
-import com.example.studynotesapp.data.entities.FolderwithSets
+import androidx.room.Insert
+import com.example.studynotesapp.data.entities.*
 import com.example.studynotesapp.data.entities.Set
 import kotlinx.coroutines.flow.Flow
 
@@ -12,8 +12,15 @@ interface LocalDataSource {
 //insert Folders
     suspend fun insertFolder(folder: Folder) : Long
 
+//insert sets
 
-//get Folders
+    suspend fun insertSet(set : Set) : Long
+
+    suspend fun insertTerms(termList: List<Term>)
+
+
+
+    //get Folders
     fun getFolderSetsWithId(folderId : Long): Flow<List<FolderwithSets>>
 
     fun getAllFolders() : Flow<List<Folder>>
@@ -24,6 +31,13 @@ interface LocalDataSource {
 //get sets
 
     fun getAllSets() : Flow<List<Set>>
+
+    fun getSetTermsWithId(setId: Long) : LiveData<SetWithTerms>
+
+
+
+    fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
+
 
 
 }

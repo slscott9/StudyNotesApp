@@ -1,14 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.sets.SetDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is set detail fragment" />
+    <data>
+        <variable
+            name="set"
+            type="com.example.studynotesapp.data.domain.DomainSet" />
+    </data>
 
-</FrameLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <include
+                    android:id="@+id/cvFlashCard"
+                    layout="@layout/card_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@id/cvWrite"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@+id/tvCircleProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCircleProfile" />
+
+                <include
+                    android:id="@+id/cvWrite"
+                    layout="@layout/card_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvFlashCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cvFlashCard"
+                    app:layout_constraintTop_toTopOf="@+id/cvFlashCard" />
+
+                <TextView
+                    android:id="@+id/tvSetName"
+                    setSetName="@{set}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCircleProfile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/circle"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/tvSetName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSetName" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    setUserName="@{set}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCircleProfile"
+                    app:layout_constraintStart_toEndOf="@+id/tvCircleProfile"
+                    app:layout_constraintTop_toTopOf="@+id/tvCircleProfile"
+                    tools:text="Stuart" />
+
+                <TextView
+                    android:id="@+id/tvTermCount"
+                    setTermCount="@{set}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvUserName"
+                    app:layout_constraintStart_toEndOf="@+id/tvUserName"
+                    tools:text="15" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTermList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="285dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/set_detail_toolbar"
+                android:theme="@style/ToolbarTheme"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                android:layout_width="match_parent"
+                app:menu="@menu/share_menu"
+                android:layout_height="?attr/actionBarSize">
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+</layout>

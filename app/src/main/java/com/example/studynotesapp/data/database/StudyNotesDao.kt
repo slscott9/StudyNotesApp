@@ -4,13 +4,24 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.studynotesapp.data.entities.Folder
-import com.example.studynotesapp.data.entities.FolderwithSets
+import androidx.room.Transaction
+import com.example.studynotesapp.data.entities.*
 import com.example.studynotesapp.data.entities.Set
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StudyNotesDao {
+
+//insert sets
+
+
+
+
+    @Insert
+    suspend fun insertSet(set : Set) : Long
+
+    @Insert
+    suspend fun insertTerms(termList: List<Term>)
 
 
 //insert folders
@@ -33,5 +44,13 @@ interface StudyNotesDao {
 
     @Query("select * from set_table")
     fun getAllSets() : Flow<List<Set>>
+
+    @Query("select * from set_table where setId =:setId")
+    fun getSetTermsWithId(setId: Long) : LiveData<SetWithTerms>
+
+    @Query("select * from term_table where setId = :setId")
+    fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
+
+
 }
 

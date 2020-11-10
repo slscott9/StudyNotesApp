@@ -19,4 +19,7 @@
     <string name="folder_name">Folder name</string>
     <string name="description_optional">optional</string>
     <string name="cancel">Cancel</string>
+    <string name="add_set_menu_item_title">Create set</string>
+    <string name="set_list_title">Sets</string>
+    <string name="set_name_hint">Set name</string>
 </resources>

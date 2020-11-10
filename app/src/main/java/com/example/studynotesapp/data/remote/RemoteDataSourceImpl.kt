@@ -4,8 +4,10 @@ import com.example.studynotesapp.data.database.StudyNotesDao
 import com.example.studynotesapp.network.StudyNotesApi
 import com.example.studynotesapp.network.dto.requests.AccountRequest
 import com.example.studynotesapp.network.dto.requests.AddFolder
+import com.example.studynotesapp.network.dto.requests.AddSet
 import com.example.studynotesapp.network.dto.responses.FolderResponse
 import com.example.studynotesapp.network.dto.responses.ServerResponse
+import com.example.studynotesapp.network.dto.responses.SetResponse
 import com.example.studynotesapp.network.utils.SafeApiRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -26,9 +28,10 @@ class RemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun addFolder(addFolder: AddFolder, userEmail: String): FolderResponse =
-        withContext(Dispatchers.IO) {apiRequest { notesApi.addFolder(addFolder, userEmail) }}
+            apiRequest { notesApi.addFolder(addFolder, userEmail) }
 
 
-
+    override suspend fun addSet(addSet: AddSet, userEmail: String): SetResponse =
+            apiRequest { notesApi.addSet(addSet, userEmail) }
 }
 
