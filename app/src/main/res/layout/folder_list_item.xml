@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="domainFolder"
+            type="com.example.studynotesapp.data.domain.DomainFolder" />
+        <variable
+            name="clickListener"
+            type="com.example.studynotesapp.ui.adapters.FolderListAdapter.FolderListListener" />
+    </data>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="8dp"
+        app:cardElevation="16dp"
+        app:cardCornerRadius="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(domainFolder)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+            <ImageView
+                android:id="@+id/ivFolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_folder_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFolderName"
+                setFolderName="@{domainFolder}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/ivFolder"
+                app:layout_constraintTop_toBottomOf="@+id/ivFolder"
+                tools:text="New folder" />
+
+            <TextView
+                android:id="@+id/tvCircle"
+                android:layout_marginTop="32dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/circle"
+                android:gravity="center"
+                android:text="S"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFolderName"
+                app:layout_constraintTop_toBottomOf="@+id/tvFolderName"
+                tools:text="S" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                setFolderUserName="@{domainFolder}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCircle"
+                app:layout_constraintStart_toEndOf="@+id/tvCircle"
+                app:layout_constraintTop_toTopOf="@+id/tvCircle"
+                tools:text="newUser" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

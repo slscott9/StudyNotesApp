@@ -14,7 +14,8 @@ data class Folder(
     val userEmail: String,
     val userName: String,
     val description: String?,
-    val isSynced: Boolean
+    val isSynced: Boolean,
+    val termCount: String
 )
 
 data class FolderwithSets(

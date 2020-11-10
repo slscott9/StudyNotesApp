@@ -9,6 +9,7 @@ import com.example.studynotesapp.other.Constants.NO_PASSWORD
 import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Response
+import timber.log.Timber
 
 class BasicAuthInterceptor(sharedPreferences: SharedPreferences) : Interceptor {
 
@@ -20,6 +21,7 @@ class BasicAuthInterceptor(sharedPreferences: SharedPreferences) : Interceptor {
 
     var userName = sharedPreferences.getString(KEY_LOGGED_IN_USERNAME, NO_EMAIL)
     var password = sharedPreferences.getString(KEY_PASSWORD, NO_PASSWORD)
+
 
 
     /*

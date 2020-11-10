@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/bottomSheetStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.CreateOptionBottomSheet">
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="50dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvCreateSet"
+        style="@style/ActionItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/create_study_set"
+        app:drawableStartCompat="@drawable/ic_baseline_add_set"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/create_study_set" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvCreateFolder"
+        style="@style/ActionItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/create_folder"
+        app:layout_constraintEnd_toEndOf="@+id/tvCreateSet"
+        app:layout_constraintStart_toStartOf="@+id/tvCreateSet"
+        app:layout_constraintTop_toBottomOf="@+id/tvCreateSet"
+        app:drawableStartCompat="@drawable/ic_baseline_folder_24" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

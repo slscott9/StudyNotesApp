@@ -42,5 +42,93 @@
         android:id="@+id/homeFragment"
         android:name="com.example.studynotesapp.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_setListFragment"
+            app:destination="@id/setListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_folderListFragment"
+            app:destination="@id/folderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.studynotesapp.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.studynotesapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/setDetailFragment"
+        android:name="com.example.studynotesapp.ui.sets.SetDetailFragment"
+        android:label="fragment_set_detail"
+        tools:layout="@layout/fragment_set_detail" >
+        <argument
+            android:name="setId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/setListFragment"
+        android:name="com.example.studynotesapp.ui.sets.SetListFragment"
+        android:label="fragment_set_list"
+        tools:layout="@layout/fragment_set_list" >
+        <action
+            android:id="@+id/action_setListFragment_to_setDetailFragment"
+            app:destination="@id/setDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderListFragment"
+        android:name="com.example.studynotesapp.ui.folder.FolderListFragment"
+        android:label="fragment_folder_list"
+        tools:layout="@layout/fragment_folder_list" >
+        <action
+            android:id="@+id/action_folderListFragment_to_folderDetailFragment"
+            app:destination="@id/folderDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderDetailFragment"
+        android:name="com.example.studynotesapp.ui.folder.FolderDetailFragment"
+        android:label="fragment_folder_detail"
+        tools:layout="@layout/fragment_folder_detail" >
+        <argument
+            android:name="folderId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_folderDetailFragment_to_setDetailFragment"
+            app:destination="@id/setDetailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/createOptionBottomSheet"
+        android:name="com.example.studynotesapp.ui.home.CreateOptionBottomSheet"
+        android:label="fragment_create_option_bottom_sheet"
+        tools:layout="@layout/fragment_create_option_bottom_sheet" >
+        <action
+            android:id="@+id/action_createOptionBottomSheet_to_addSetFragment"
+            app:destination="@id/addSetFragment" />
+        <action
+            android:id="@+id/action_createOptionBottomSheet_to_folderDetailFragment"
+            app:destination="@id/folderDetailFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/addSetFragment"
+        android:name="com.example.studynotesapp.ui.add.AddSetFragment"
+        android:label="fragment_add_set"
+        tools:layout="@layout/fragment_add_set" />
+    <dialog
+        android:id="@+id/addFolderDialogFragment"
+        android:name="com.example.studynotesapp.ui.add.AddFolderDialogFragment"
+        android:label="fragment_add_folder_dialog"
+        tools:layout="@layout/fragment_add_folder_dialog" >
+        <action
+            android:id="@+id/action_addFolderDialogFragment_to_folderDetailFragment"
+            app:destination="@id/folderDetailFragment" />
+    </dialog>
 </navigation>

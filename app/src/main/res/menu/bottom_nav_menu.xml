@@ -7,19 +7,19 @@
         android:title="home"/>
 
     <item
-        android:id="@+id/searchFragment2"
+        android:id="@+id/searchFragment"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="search"/>
 
 
     <item
-        android:id="@+id/bottomSheetFragment"
+        android:id="@+id/createOptionBottomSheet"
         android:icon="@drawable/ic_baseline_add_circle_24"
         android:title="add"/>
 
 
     <item
-        android:id="@+id/profileFragment2"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_baseline_person_outline_24"
         android:title="profile"/>
 

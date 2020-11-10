@@ -16,7 +16,8 @@ data class Set(
     val setName : String,
     val userEmail: String,
     val termCount: Int,
-    val isSynced: Boolean
+    val isSynced: Boolean,
+    val userName: String
 
 )
 
