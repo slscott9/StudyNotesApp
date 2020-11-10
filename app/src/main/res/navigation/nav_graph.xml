@@ -55,6 +55,12 @@
         <action
             android:id="@+id/action_homeFragment_to_folderListFragment"
             app:destination="@id/folderListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_setDetailFragment"
+            app:destination="@id/setDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_folderDetailFragment"
+            app:destination="@id/folderDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

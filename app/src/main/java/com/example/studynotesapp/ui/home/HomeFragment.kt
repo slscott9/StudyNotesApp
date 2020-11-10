@@ -7,8 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.studynotesapp.R
+import com.example.studynotesapp.data.domain.asDomainFolderList
+import com.example.studynotesapp.data.domain.asDomainSetList
 import com.example.studynotesapp.databinding.FragmentHomeBinding
 import com.example.studynotesapp.other.Constants
 import com.example.studynotesapp.other.Constants.KEY_LOGGED_IN_EMAIL
@@ -28,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var folderListAdapter: FolderListAdapter
     private lateinit var setListAdapter: SetListAdapter
+    private val viewModel: HomeFragmentViewModel by viewModels()
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -63,7 +68,37 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupListeners()
+        setupAdapters()
+        setupObservers()
+        setupRecyclerViews()
 
+
+
+    }
+
+    private fun setupRecyclerViews(){
+        binding.rvSets.apply {
+            adapter = setListAdapter
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        binding.rvFolderList.apply {
+            adapter = folderListAdapter
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.setList.observe(viewLifecycleOwner){
+            it?.let {
+                setListAdapter.submitList(it.asDomainSetList())
+            }
+        }
+        viewModel.folderList.observe(viewLifecycleOwner){
+            it?.let {
+                folderListAdapter.submitList(it.asDomainFolderList())
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -78,10 +113,10 @@ class HomeFragment : Fragment() {
 
     private fun setupAdapters() {
         folderListAdapter = FolderListAdapter(FolderListAdapter.FolderListListener {
-
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFolderDetailFragment(it))
         })
         setListAdapter = SetListAdapter(SetListListener {
-
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSetDetailFragment(it))
         })
 
     }

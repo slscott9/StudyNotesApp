@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.studynotesapp.data.entities.Folder
 import com.example.studynotesapp.data.entities.FolderwithSets
+import com.example.studynotesapp.data.entities.Set
 import com.example.studynotesapp.data.local.LocalDataSource
 import com.example.studynotesapp.data.remote.RemoteDataSource
 import com.example.studynotesapp.network.dto.requests.AccountRequest
@@ -78,5 +79,10 @@ class RepositoryImpl @Inject constructor(
 
     override fun getFolderWithId(folderId: Long): LiveData<FolderwithSets> {
         return localDataSource.getFolderWithId(folderId)
+    }
+
+
+    override fun getAllSets(): Flow<List<Set>> {
+        return localDataSource.getAllSets()
     }
 }

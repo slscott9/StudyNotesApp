@@ -5,6 +5,8 @@ import com.example.studynotesapp.CoroutineTestRule
 import com.example.studynotesapp.data.local.LocalDataSource
 import com.example.studynotesapp.data.remote.RemoteDataSource
 import com.example.studynotesapp.network.dto.requests.AccountRequest
+import com.example.studynotesapp.network.dto.requests.AddFolder
+import com.example.studynotesapp.network.dto.responses.FolderResponse
 import com.example.studynotesapp.network.dto.responses.ServerResponse
 import com.example.studynotesapp.other.Resource
 import com.nhaarman.mockitokotlin2.*
@@ -84,6 +86,64 @@ class RepositoryImplTest {
         assertEquals(resource, Resource.error("Check network connection", null))
 
     }
+
+    @Test
+    fun addFolder_returns_error() = runBlocking<Unit> {
+        val exception = Exception()
+
+        val errorResource = Resource.error("Check network connection", -1L)
+
+        doAnswer { throw exception }.`when`(remoteDataSource).addFolder(any(), any())
+
+        val response = repository.addFolder(any(), any())
+
+
+        //assertEquals(expected, actual)
+        assertEquals(errorResource, response )
+    }
+
+    @Test
+    fun addFolder_calls_insertFolder_onSuccess() = runBlocking<Unit> {
+
+        val folderResponse = FolderResponse(
+                id = 1,
+                folderName = "new folder",
+                userEmail = "newUser@gmail.com",
+                description = "new folder description",
+                isSynced = false,
+                termCount = "1",
+                userName = "newUser"
+        )
+
+        val addFolder = AddFolder(
+                folderName = "new folder",
+                userEmail = "newUser@gmail.com",
+                description = "new folder description",
+                isSynced = false,
+                termCount = "1",
+                userName = "newUser"
+        )
+
+        val successResource = Resource.success(1L)
+
+        whenever(remoteDataSource.addFolder(any(), any())).thenReturn(folderResponse)
+        whenever(localDataSource.insertFolder(any())).thenReturn(1L)
+
+        val resource = repository.addFolder(addFolder, "newUser@gmail.com")
+
+
+        /*
+            remoteDataSource is mocked so we can user any for its parameters
+
+            IMPORTANT: repository is NOT mocked so we cannot use any for its parameters
+         */
+        verify(remoteDataSource, times(1)).addFolder(any(), any())
+        assertEquals(successResource, resource)
+
+
+    }
+
+
 
 
 
