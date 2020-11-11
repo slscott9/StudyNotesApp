@@ -92,6 +92,16 @@
         <action
             android:id="@+id/action_setListFragment_to_setDetailFragment"
             app:destination="@id/setDetailFragment" />
+        <argument
+            android:name="folderId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <argument
+            android:name="addSetToFolderFlag"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_setListFragment_to_folderDetailFragment"
+            app:destination="@id/folderDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/folderListFragment"
@@ -113,6 +123,9 @@
         <action
             android:id="@+id/action_folderDetailFragment_to_setDetailFragment"
             app:destination="@id/setDetailFragment" />
+        <action
+            android:id="@+id/action_folderDetailFragment_to_folderOptionsBottomSheet"
+            app:destination="@id/folderOptionsBottomSheet" />
     </fragment>
     <dialog
         android:id="@+id/createOptionBottomSheet"
@@ -151,6 +164,18 @@
         tools:layout="@layout/fragment_study" >
         <argument
             android:name="setId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderOptionsBottomSheet"
+        android:name="com.example.studynotesapp.ui.optiondialog.FolderOptionsBottomSheet"
+        android:label="fragment_folder_options_bs"
+        tools:layout="@layout/fragment_folder_options_bs" >
+        <action
+            android:id="@+id/action_folderOptionsBottomSheet_to_setListFragment"
+            app:destination="@id/setListFragment" />
+        <argument
+            android:name="folderId"
             app:argType="long" />
     </fragment>
 </navigation>

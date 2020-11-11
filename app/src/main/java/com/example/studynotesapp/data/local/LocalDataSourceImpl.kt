@@ -23,6 +23,10 @@ class LocalDataSourceImpl @Inject constructor(
         return dao.insertSet(set)
     }
 
+    override suspend fun insertSetList(setList: List<Set>) {
+        dao.insertSetList(setList)
+    }
+
     override suspend fun insertTerms(termList: List<Term>) {
         dao.insertTerms(termList)
     }

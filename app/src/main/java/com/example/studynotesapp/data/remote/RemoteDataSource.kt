@@ -19,4 +19,6 @@ interface RemoteDataSource {
 
     suspend fun addSet(addSet: AddSet, userEmail: String) : SetResponse
 
+    suspend fun addSetToFolder(setIds: List<Long>, folderId: Long) : ServerResponse
+
 }

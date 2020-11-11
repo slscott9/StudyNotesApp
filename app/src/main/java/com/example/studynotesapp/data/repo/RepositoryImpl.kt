@@ -80,7 +80,17 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun addSetsToFolder(setList: List<Set>, setIds: List<Long>, folderId: Long): Resource<String> = withContext(Dispatchers.IO){
+        try {
 
+            val setResponse = remoteDataSource.addSetToFolder(setIds, folderId)
+            localDataSource.insertSetList(setList)
+            Resource.success(setResponse.message)
+
+        }catch (e: Exception){
+            Resource.error("Check internet connection", e.message)
+        }
+    }
 
     override fun getAllFolderSetsWithId(folderId: Long): Flow<List<FolderwithSets>> {
         return localDataSource.getFolderSetsWithId(folderId)
@@ -90,7 +100,7 @@ class RepositoryImpl @Inject constructor(
         return localDataSource.getAllFolders()
     }
 
-    override fun getFolderWithId(folderId: Long): LiveData<FolderwithSets> {
+    override fun getFolderWithId(folderId: Long):  LiveData<FolderwithSets>{
         return localDataSource.getFolderWithId(folderId)
     }
 
@@ -106,5 +116,9 @@ class RepositoryImpl @Inject constructor(
 
     override fun getTermsWithSetId(setId: Long): Flow<List<Term>> {
         return localDataSource.getTermsWithSetId(setId)
+    }
+
+    override suspend fun insertSetList(setList: List<Set>) {
+        localDataSource.insertSetList(setList)
     }
 }

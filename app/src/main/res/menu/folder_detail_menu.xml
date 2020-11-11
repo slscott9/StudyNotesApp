@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/createSetMenuItem"
-        android:title="@string/add_set_menu_item_title"
-        android:icon="@drawable/ic_baseline_add_24"
-        android:orderInCategory="1"
+        android:id="@+id/folder_detail_options_item"
+        android:icon="@drawable/ic_baseline_more_vert_24"
+        android:title="options"
+        android:orderInCategory="2"
         app:showAsAction="always"/>
 
 </menu>

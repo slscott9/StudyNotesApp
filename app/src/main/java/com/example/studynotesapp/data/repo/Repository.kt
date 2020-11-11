@@ -31,6 +31,8 @@ interface Repository {
 
     suspend fun addSet(addSet: AddSet, userEmail: String) : Resource<Long>
 
+    suspend fun addSetsToFolder(setList : List<Set>, setIds: List<Long>, folderId: Long) : Resource<String>
+
 
 
 //Local database get Folders
@@ -48,6 +50,11 @@ interface Repository {
     fun getSetTermsWithId(setId: Long) : LiveData<SetWithTerms>
 
     fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
+
+
+//insert sets
+    suspend fun insertSetList(setList : List<Set>)
+
 
 
 

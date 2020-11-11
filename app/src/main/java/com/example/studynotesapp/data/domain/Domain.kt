@@ -50,6 +50,19 @@ data class DomainSet(
     val userName: String
 )
 
+fun List<DomainSet>.asDatabaseSets(folderId: Long) : List<Set>{
+    return map {
+        Set(
+            setId = it.setId,
+            folderId = folderId,
+            setName = it.setName,
+            userEmail = it.userEmail,
+            termCount = it.termCount,
+            isSynced = it.isSynced,
+            userName = it.userName
+        )
+    }
+}
 fun Set.asDomainSet() : DomainSet {
 
     return DomainSet(

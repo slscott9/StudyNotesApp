@@ -16,6 +16,8 @@ interface LocalDataSource {
 
     suspend fun insertSet(set : Set) : Long
 
+    suspend fun insertSetList(setList: List<Set>)
+
     suspend fun insertTerms(termList: List<Term>)
 
 
@@ -26,7 +28,6 @@ interface LocalDataSource {
     fun getAllFolders() : Flow<List<Folder>>
 
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>
-
 
 //get sets
 

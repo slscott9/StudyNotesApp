@@ -72,6 +72,9 @@ dependencies {
     testImplementation "com.google.truth:truth:1.0.1"
     testImplementation "org.mockito:mockito-core:3.4.6"
 
+    implementation 'androidx.recyclerview:recyclerview-selection:1.0.0'
+
+
 
 
     // Coroutines for getting off the UI thread

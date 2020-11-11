@@ -132,7 +132,9 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/set_detail_toolbar"
-                android:theme="@style/ToolbarTheme"
+                app:title="@string/tvSetsTitle"
+                app:titleTextColor="@color/white"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_white"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 android:layout_width="match_parent"
                 app:menu="@menu/share_menu"

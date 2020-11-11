@@ -40,7 +40,20 @@ class FolderDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpToolbar()
+
         viewmodel.setFolderId(folderDetailArgs.folderId)
+
+        binding.folderDetailToolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+
+                R.id.folder_detail_options_item -> {
+                    findNavController().navigate(FolderDetailFragmentDirections.actionFolderDetailFragmentToFolderOptionsBottomSheet(folderDetailArgs.folderId))
+                    true
+                }
+                else -> false
+            }
+        }
 
         val setListAdapter = SetListAdapter(SetListListener {
             findNavController().navigate(FolderDetailFragmentDirections.actionFolderDetailFragmentToSetDetailFragment(it))
@@ -58,6 +71,14 @@ class FolderDetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         }
     }
+
+    private fun setUpToolbar() {
+        binding.folderDetailToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+
 
 
 }

@@ -37,6 +37,7 @@ class FolderListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpToolbar()
 
         val folderListAdapter = FolderListAdapter(FolderListAdapter.FolderListListener {
             findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
@@ -50,6 +51,12 @@ class FolderListFragment : Fragment() {
         binding.rvFolderList.apply {
             layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             adapter = folderListAdapter
+        }
+    }
+
+    private fun setUpToolbar() {
+        binding.folderListToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

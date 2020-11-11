@@ -33,5 +33,8 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun addSet(addSet: AddSet, userEmail: String): SetResponse =
             apiRequest { notesApi.addSet(addSet, userEmail) }
+
+    override suspend fun addSetToFolder(setIds: List<Long>, folderId: Long): ServerResponse  =
+        apiRequest { notesApi.addSetsToFolder(setIds, folderId) }
 }
 

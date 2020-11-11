@@ -29,6 +29,11 @@ interface StudyNotesDao {
     @Insert
     suspend fun insertFolder(folder: Folder) : Long
 
+
+//insert set list
+    @Insert
+    suspend fun insertSetList(setList: List<Set>)
+
 //get folders
 
     @Query("select * from folder_table where folderId =:folderId")
@@ -36,6 +41,7 @@ interface StudyNotesDao {
 
     @Query("select * from folder_table")
     fun getAllFolders() : Flow<List<Folder>>
+
 
     @Query("select * from folder_table where folderId = :folderId")
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>

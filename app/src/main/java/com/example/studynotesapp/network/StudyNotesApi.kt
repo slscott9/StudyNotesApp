@@ -28,5 +28,8 @@ interface StudyNotesApi {
     @POST("user/addSet/{userEmail}")
     suspend fun addSet(@Body addSet: AddSet, @Path("userEmail") userEmail: String) : Response<SetResponse>
 
+    @POST("user/addSetsToFolder{folderId}")
+    suspend fun addSetsToFolder(@Body setIds : List<Long>, @Path("folderId") folderId: Long) : Response<ServerResponse>
+
 }
 

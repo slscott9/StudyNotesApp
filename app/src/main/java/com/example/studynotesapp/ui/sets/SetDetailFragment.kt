@@ -50,7 +50,7 @@ class SetDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
+        setUpToolbar()
         setupRv()
         setupObservers()
         setupListeners()
@@ -69,12 +69,25 @@ class SetDetailFragment : Fragment() {
             )
         }
 
-        binding.setDetailToolbar.setupWithNavController(findNavController())
-//        binding.setDetailToolbar.navigationIcon = resources.getDrawable(R.drawable.ic_baseline_arrow_back_white)
-//        binding.setDetailToolbar.title = "Sets"
-//        binding.setDetailToolbar.setTitleTextColor(resources.getColor(R.color.white))
+//        binding.setDetailToolbar.setOnMenuItemClickListener {
+//            when(it.itemId){
+//
+//                R.id.set_detail_options_item -> {
+//
+//                }
+//                else -> false
+//            }
+//        }
 
 
+
+
+    }
+
+    private fun setUpToolbar() {
+        binding.setDetailToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupObservers() {
