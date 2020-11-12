@@ -36,5 +36,12 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun addSetToFolder(setIds: List<Long>, folderId: Long): ServerResponse  =
         apiRequest { notesApi.addSetsToFolder(setIds, folderId) }
+
+    override suspend fun deleteFolder(folderId: Long): ServerResponse =
+            apiRequest { notesApi.deleteFolder(folderId) }
 }
 
+
+/*
+    Network send http ok but setlistFragment is resource.error
+ */

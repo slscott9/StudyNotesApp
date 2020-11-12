@@ -13,7 +13,7 @@ import timber.log.Timber
 
 class SetListAddFolderAdapter : ListAdapter<DomainSet, SetListAddFolderAdapter.ViewHolder>(SetDiffUtil()) {
 
-     val itemClickedList = ArrayList<DomainSet>()
+     val itemClickedList = ArrayList<DomainSet>() //holds domain sets that were selected by user
     var tracker: SelectionTracker<Long>? = null
 
     init {
@@ -31,11 +31,12 @@ class SetListAddFolderAdapter : ListAdapter<DomainSet, SetListAddFolderAdapter.V
             binding.domainSet = item
             binding.executePendingBindings()
             itemView.isActivated = isActivated
-            if(isActivated){
+            
+            if(isActivated){ //on user longer press add set to itemClickedList
                 itemClickedList.add(item)
                 Timber.i(itemClickedList.toString())
             }else{
-                itemClickedList.remove(item)
+                itemClickedList.remove(item) //other wise remove the item
             }
         }
 

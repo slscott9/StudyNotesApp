@@ -14,6 +14,7 @@ object Constants {
   */
 
     const val BASE_URL = "https://192.168.1.11:8082"
+//    const val BASE_URL = "https://172.20.10.2:8082" this is for your phones hotspot use ipconfig to check computers ip address when connected to hotspot may change next time computer uses hotspot
 
     const val ENCRYPTED_SHARED_PREF_NAME = "study_notes_encr_share_pref"
 

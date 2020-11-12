@@ -42,6 +42,7 @@ class FolderDetailFragment : Fragment() {
 
         setUpToolbar()
 
+
         viewmodel.setFolderId(folderDetailArgs.folderId)
 
         binding.folderDetailToolbar.setOnMenuItemClickListener {

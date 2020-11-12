@@ -35,7 +35,7 @@ class AddFolderViewModel @ViewModelInject constructor(
                     userName = userName ?: "",
                     description = description,
                     isSynced = false,
-                    termCount = "0"
+                    setCount = "0"
 
                 ),
                 userEmail ?: ""

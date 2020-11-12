@@ -9,7 +9,7 @@ data class FolderResponse(
     val userName: String,
     val description: String?,
     val isSynced: Boolean,
-    val termCount: String
+    val setCount: String
 )
 
 fun FolderResponse.asDatabaseModel() : Folder {
@@ -20,6 +20,6 @@ fun FolderResponse.asDatabaseModel() : Folder {
         userName = userName,
         description = description,
         isSynced = isSynced,
-        termCount = termCount
+        setCount = setCount
     )
 }

@@ -10,7 +10,7 @@ data class DomainFolder(
     val userName: String,
     val description: String?,
     val isSynced: Boolean,
-    val termCount: String
+    val setCount: String
 )
 
 
@@ -28,14 +28,14 @@ fun List<Folder>.asDomainFolderList() : List<DomainFolder> {
             userName = it.userName,
             description = it.description,
             isSynced = it.isSynced,
-            termCount = it.termCount
+            setCount = it.setCount
         )
     }
 }
 
 fun Folder.asDomainFolder() : DomainFolder {
     return DomainFolder(
-        folderId, name, userEmail, userName, description, isSynced, termCount
+        folderId, name, userEmail, userName, description, isSynced, setCount
     )
 }
 

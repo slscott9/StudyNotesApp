@@ -76,6 +76,7 @@ class RepositoryImpl @Inject constructor(
             Resource.success(setId)
 
         }catch (e : Exception) {
+            Timber.i(e.message)
             Resource.error("Check network connection", -1L)
         }
     }
@@ -85,11 +86,34 @@ class RepositoryImpl @Inject constructor(
 
             val setResponse = remoteDataSource.addSetToFolder(setIds, folderId)
             localDataSource.insertSetList(setList)
+            localDataSource.updateFolder(setList.size, folderId)
             Resource.success(setResponse.message)
 
+
         }catch (e: Exception){
+            Timber.i("The error message for addSetsToFolder is $e.message")
             Resource.error("Check internet connection", e.message)
         }
+    }
+
+    //Network Folder
+
+    //Delete folder
+    override suspend fun deleteFolder(folderId: Long): Resource<String> = withContext(Dispatchers.IO){
+        try {
+            val serverResponse = remoteDataSource.deleteFolder(folderId)
+            val folderToDelete = localDataSource.getFolder(folderId)
+            localDataSource.deleteFolder(folderToDelete)
+            Resource.success(serverResponse.message)
+        }catch (e : Exception){
+            Resource.error("Check network connection", e.message)
+        }
+    }
+
+//folders
+
+    override suspend fun deleteFolder(folder: Folder) {
+        localDataSource.deleteFolder(folder)
     }
 
     override fun getAllFolderSetsWithId(folderId: Long): Flow<List<FolderwithSets>> {
@@ -104,7 +128,13 @@ class RepositoryImpl @Inject constructor(
         return localDataSource.getFolderWithId(folderId)
     }
 
+    override suspend fun getFolder(folderId: Long): Folder {
+        return localDataSource.getFolder(folderId)
+    }
 
+
+
+    //sets
     override fun getAllSets(): Flow<List<Set>> {
         return localDataSource.getAllSets()
     }

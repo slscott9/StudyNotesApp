@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.example.studynotesapp.data.entities.Folder
 import com.example.studynotesapp.data.entities.FolderwithSets
 import com.example.studynotesapp.data.repo.Repository
+import kotlinx.coroutines.launch
 
 class FolderDetailViewModel @ViewModelInject constructor(
     private val repository: Repository
@@ -30,5 +31,9 @@ class FolderDetailViewModel @ViewModelInject constructor(
     fun setFolderId(folderId : Long){
         _folderId.value = folderId
     }
+
+
+
+
 
 }

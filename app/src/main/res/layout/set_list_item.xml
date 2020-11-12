@@ -55,6 +55,8 @@
             <TextView
                 android:id="@+id/tvCircle"
                 setUserInitial="@{domainSet}"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="32dp"

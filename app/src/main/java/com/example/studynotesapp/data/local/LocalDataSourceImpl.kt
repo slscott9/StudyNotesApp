@@ -17,7 +17,14 @@ class LocalDataSourceImpl @Inject constructor(
         return dao.insertFolder(folder)
     }
 
-//Insert sets
+    //update Folder
+    override suspend fun updateFolder(setCount: Int, folderId: Long) {
+        val folderToUpdate = dao.findFolder(folderId)
+        folderToUpdate.setCount = setCount.toString()
+        dao.updateFolder(folderToUpdate)
+    }
+
+    //Insert sets
 
     override suspend fun insertSet(set: Set): Long {
         return dao.insertSet(set)
@@ -29,6 +36,11 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun insertTerms(termList: List<Term>) {
         dao.insertTerms(termList)
+    }
+
+    //delete folder
+    override suspend fun deleteFolder(folder: Folder) {
+        dao.deleteFolder(folder)
     }
 
     //get Folders
@@ -44,7 +56,11 @@ class LocalDataSourceImpl @Inject constructor(
         return dao.getFolderWithId(folderId)
     }
 
-//get Sets
+    override suspend fun getFolder(folderId: Long): Folder {
+        return dao.getFolder(folderId)
+    }
+
+    //get Sets
 
     override fun getAllSets(): Flow<List<Set>> {
         return dao.getAllSets()

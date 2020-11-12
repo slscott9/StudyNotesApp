@@ -8,14 +8,14 @@ import androidx.room.Relation
 @Entity(tableName = "folder_table")
 data class Folder(
 
-    @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = true)
     val folderId: Long = 0,
-    val name: String,
-    val userEmail: String,
-    val userName: String,
-    val description: String?,
-    val isSynced: Boolean,
-    val termCount: String
+        val name: String,
+        val userEmail: String,
+        val userName: String,
+        val description: String?,
+        val isSynced: Boolean,
+        var setCount: String
 )
 
 data class FolderwithSets(

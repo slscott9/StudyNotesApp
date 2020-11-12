@@ -6,13 +6,13 @@ import androidx.room.*
     ForeignKey(entity = Folder::class,
     parentColumns = arrayOf("folderId"),
     childColumns = arrayOf("folderId"),
-    onDelete = ForeignKey.CASCADE
+    onDelete = ForeignKey.SET_NULL
 )
 ))
 data class Set(
     @PrimaryKey(autoGenerate = true)
     val setId: Long = 0,
-    val folderId: Long?,
+    var folderId: Long?,
     val setName : String,
     val userEmail: String,
     val termCount: Int,

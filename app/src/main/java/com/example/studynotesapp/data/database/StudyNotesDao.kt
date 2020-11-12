@@ -1,10 +1,7 @@
 package com.example.studynotesapp.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.studynotesapp.data.entities.*
 import com.example.studynotesapp.data.entities.Set
 import kotlinx.coroutines.flow.Flow
@@ -30,11 +27,26 @@ interface StudyNotesDao {
     suspend fun insertFolder(folder: Folder) : Long
 
 
-//insert set list
-    @Insert
+//update set list
+    @Update
     suspend fun insertSetList(setList: List<Set>)
 
+
+//delete folder
+    @Delete
+    suspend fun deleteFolder(folder: Folder)
+
+//update folder
+    @Update
+    suspend fun updateFolder(folder: Folder)
+
+
 //get folders
+
+    @Query("select * from folder_table where folderId = :folderId")
+    suspend fun findFolder(folderId: Long) : Folder
+
+
 
     @Query("select * from folder_table where folderId =:folderId")
     fun getFolderSetsWithId(folderId : Long) : Flow<List<FolderwithSets>>
@@ -45,6 +57,9 @@ interface StudyNotesDao {
 
     @Query("select * from folder_table where folderId = :folderId")
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>
+
+    @Query("select * from folder_table where folderId = :folderId")
+    suspend fun getFolder(folderId: Long) : Folder
 
 //get sets
 

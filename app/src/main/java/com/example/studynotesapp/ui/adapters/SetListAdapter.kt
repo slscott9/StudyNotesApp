@@ -27,6 +27,7 @@ class SetListAdapter(val clickListener: SetListListener) : ListAdapter<DomainSet
     inner class ViewHolder(val binding : SetListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : DomainSet, clickListener: SetListListener){
 
+            binding.clickListener = clickListener
             binding.domainSet = item
             binding.executePendingBindings()
         }

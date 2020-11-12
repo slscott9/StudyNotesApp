@@ -8,11 +8,17 @@
     <color name="black">#FF000000</color>
 
 
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="blueQuizlet">#184DA8</color>
+    <color name="colorPrimary">#468faf</color>
+    <color name="colorPrimaryDark">#89c2d9</color>
+    <color name="colorAccent">#90e0ef</color>
+    <color name="blueQuizlet">#03045e</color>
     <color name="white">#FFFFFF</color>
     <color name="turquise">#19D3DA</color>
     <color name="trans">#00000000</color>
+    <color name="background">#e6ebe0</color>
+
+
+
+
+
 </resources>

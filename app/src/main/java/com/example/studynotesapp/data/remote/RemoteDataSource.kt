@@ -21,4 +21,6 @@ interface RemoteDataSource {
 
     suspend fun addSetToFolder(setIds: List<Long>, folderId: Long) : ServerResponse
 
+    suspend fun deleteFolder(folderId: Long) : ServerResponse
+
 }

@@ -11,6 +11,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@color/background"
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -70,6 +71,9 @@
                     android:layout_height="32dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/circle"
+                    setUserInitial="@{set}"
+                    android:textColor="@color/white"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:textStyle="bold"

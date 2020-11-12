@@ -20,6 +20,12 @@ interface LocalDataSource {
 
     suspend fun insertTerms(termList: List<Term>)
 
+//delete folder
+    suspend fun deleteFolder(folder: Folder)
+
+//update folder
+    suspend fun updateFolder(setCount: Int, folderId: Long)
+
 
 
     //get Folders
@@ -28,6 +34,9 @@ interface LocalDataSource {
     fun getAllFolders() : Flow<List<Folder>>
 
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>
+
+    suspend fun getFolder(folderId: Long) : Folder
+
 
 //get sets
 

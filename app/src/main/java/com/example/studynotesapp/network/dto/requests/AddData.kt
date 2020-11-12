@@ -9,7 +9,7 @@ data class AddFolder(
     val userName: String,
     val description: String?,
     val isSynced: Boolean,
-    val termCount: String
+    val setCount: String
 
 )
 
@@ -20,7 +20,7 @@ fun Folder.asAddFolderObject() : AddFolder {
         userName = userName,
         description = description,
         isSynced = isSynced,
-        termCount = termCount
+        setCount = setCount
     )
 }
 

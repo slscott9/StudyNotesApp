@@ -27,6 +27,9 @@ interface Repository {
 //Network add Folders
     suspend fun addFolder(addFolder: AddFolder, userEmail: String) : Resource<Long>
 
+//Network delete folder
+    suspend fun deleteFolder(folderId: Long) : Resource<String>
+
 //Network add set
 
     suspend fun addSet(addSet: AddSet, userEmail: String) : Resource<Long>
@@ -42,6 +45,12 @@ interface Repository {
     fun getAllFolders() : Flow<List<Folder>>
 
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>
+
+    suspend fun getFolder(folderId: Long) : Folder
+
+
+    //local delete folder
+    suspend fun deleteFolder(folder: Folder)
 
 //Local Database get Sets
 

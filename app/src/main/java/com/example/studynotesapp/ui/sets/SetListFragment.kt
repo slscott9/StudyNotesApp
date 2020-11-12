@@ -79,17 +79,19 @@ class SetListFragment : Fragment() {
             }
 
             viewModel.insertSetStatus.observe(viewLifecycleOwner){
-                when(it.status){
-                    Status.SUCCESS -> {
-                        binding.setListProgressBar.visibility = View.GONE
-                        findNavController().navigate(SetListFragmentDirections.actionSetListFragmentToFolderDetailFragment(setListArgs.folderId))
-                    }
-                    Status.LOADING -> {
-                        binding.setListProgressBar.visibility = View.VISIBLE
-                    }
-                    Status.ERROR -> {
-                        binding.setListProgressBar.visibility = View.GONE
-                        Toast.makeText(requireActivity(), it.message, Toast.LENGTH_LONG).show()
+                it?.let {
+                    when(it.status){
+                        Status.SUCCESS -> {
+                            binding.setListProgressBar.visibility = View.GONE
+                            findNavController().navigate(SetListFragmentDirections.actionSetListFragmentToFolderDetailFragment(setListArgs.folderId))
+                        }
+                        Status.LOADING -> {
+                            binding.setListProgressBar.visibility = View.VISIBLE
+                        }
+                        Status.ERROR -> {
+                            binding.setListProgressBar.visibility = View.GONE
+                            Toast.makeText(requireActivity(), it.message, Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             }
