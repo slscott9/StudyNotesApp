@@ -18,10 +18,6 @@ import kotlinx.android.synthetic.main.fragment_create_option_bottom_sheet.*
 class CreateOptionBottomSheet : BottomSheetDialogFragment() {
 
 
-
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

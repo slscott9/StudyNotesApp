@@ -69,7 +69,7 @@ class SetListFragment : Fragment() {
                 StorageStrategy.createLongStorage()
 
             ).withSelectionPredicate(
-                SelectionPredicates.createSelectAnything()
+                SelectionPredicates.createSelectAnything() //no restriction to what is selected
             ).build()
 
             setListAdapter.tracker = tracker

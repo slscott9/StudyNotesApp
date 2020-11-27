@@ -111,7 +111,7 @@ class RepositoryImplTest {
                 userEmail = "newUser@gmail.com",
                 description = "new folder description",
                 isSynced = false,
-                termCount = "1",
+                setCount = "1",
                 userName = "newUser"
         )
 
@@ -120,7 +120,7 @@ class RepositoryImplTest {
                 userEmail = "newUser@gmail.com",
                 description = "new folder description",
                 isSynced = false,
-                termCount = "1",
+                setCount = "1",
                 userName = "newUser"
         )
 

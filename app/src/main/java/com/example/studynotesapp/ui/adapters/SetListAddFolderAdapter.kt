@@ -17,7 +17,7 @@ class SetListAddFolderAdapter : ListAdapter<DomainSet, SetListAddFolderAdapter.V
     var tracker: SelectionTracker<Long>? = null
 
     init {
-        setHasStableIds(true)
+        setHasStableIds(true) //each set in list uses setid which is unique
     }
 
     override fun getItemId(position: Int): Long {
