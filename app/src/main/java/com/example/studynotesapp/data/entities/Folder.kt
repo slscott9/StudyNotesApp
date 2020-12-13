@@ -7,9 +7,8 @@ import androidx.room.Relation
 
 @Entity(tableName = "folder_table")
 data class Folder(
-
         @PrimaryKey(autoGenerate = true)
-    val folderId: Long = 0,
+        val folderId: Long = 0,
         val name: String,
         val userEmail: String,
         val userName: String,
@@ -19,10 +18,10 @@ data class Folder(
 )
 
 data class FolderwithSets(
-    @Embedded val folder: Folder,
-    @Relation(
-        parentColumn = "folderId",
-        entityColumn = "folderId"
-    )
-    val setList: List<Set>
+        @Embedded val folder: Folder,
+        @Relation(
+                parentColumn = "folderId",
+                entityColumn = "folderId"
+        )
+        val setList: List<Set>
 )

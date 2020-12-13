@@ -15,25 +15,25 @@ import retrofit2.http.Path
 interface StudyNotesApi {
 
     @POST("/register")
-    suspend fun register(@Body registerRequest: AccountRequest) : Response<ServerResponse>
+    suspend fun register(@Body registerRequest: AccountRequest) :ServerResponse
 
     @POST("/login")
-    suspend fun login(@Body loginRequest: AccountRequest) : Response<ResponseBody>
+    suspend fun login(@Body loginRequest: AccountRequest) : ServerResponse
 
 
-    @POST("/user/addFolder/{userEmail}")
-    suspend fun addFolder(@Body addFolder: AddFolder, @Path("userEmail") userEmail: String) : Response<FolderResponse>
+    @POST("/user/add/folder/{userEmail}")
+    suspend fun addFolder(@Body addFolder: AddFolder, @Path("userEmail") userEmail: String) : FolderResponse
 
 
-    @POST("user/addSet/{userEmail}")
-    suspend fun addSet(@Body addSet: AddSet, @Path("userEmail") userEmail: String) : Response<SetResponse>
+    @POST("user/add/set/{userEmail}")
+    suspend fun addSet(@Body addSet: AddSet, @Path("userEmail") userEmail: String) : SetResponse
 
-    @POST("/user/addSetsToFolder/{folderId}")
-    suspend fun addSetsToFolder(@Body setIds : List<Long>, @Path("folderId") folderId: Long) : Response<ServerResponse>
+    @POST("/user/add/set/folder/{folderId}")
+    suspend fun addSetsToFolder(@Body setIds : List<Long>, @Path("folderId") folderId: Long) : ServerResponse
 
 
-    @POST("user/deleteFolder/{folderId}")
-    suspend fun deleteFolder(@Path("folderId") folderId: Long) : Response<ServerResponse>
+    @POST("user/delete/folder/{folderId}")
+    suspend fun deleteFolder(@Path("folderId") folderId: Long) : ServerResponse
 
 }
 

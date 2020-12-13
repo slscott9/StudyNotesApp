@@ -19,9 +19,9 @@ interface Repository {
 
 //Network register and login
 
-    suspend fun register(accountRequest: AccountRequest) : Resource<String>
+    suspend fun register(accountRequest: AccountRequest) : Resource<ServerResponse>
 
-    suspend fun login(loginRequest: AccountRequest) : Resource<String>
+    suspend fun login(loginRequest: AccountRequest) : Resource<ServerResponse>
 
 
 //Network add Folders

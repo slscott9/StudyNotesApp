@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studynotesapp.data.repo.Repository
 import com.example.studynotesapp.network.dto.requests.AccountRequest
+import com.example.studynotesapp.network.dto.responses.ServerResponse
 import com.example.studynotesapp.other.Resource
 import kotlinx.coroutines.launch
 
@@ -14,8 +15,8 @@ class RegisterViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel(){
 
-    private val _registerStatus = MutableLiveData<Resource<String>>()
-    val registerStatus: LiveData<Resource<String>> = _registerStatus
+    private val _registerStatus = MutableLiveData<Resource<ServerResponse>>()
+    val registerStatus: LiveData<Resource<ServerResponse>> = _registerStatus
 
     fun register(userEmail: String, userName: String, password : String) {
 

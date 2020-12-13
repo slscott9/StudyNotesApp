@@ -7,7 +7,7 @@ import com.example.studynotesapp.data.entities.Set
 import com.example.studynotesapp.data.entities.Term
 import com.example.studynotesapp.data.entities.User
 
-@Database(entities = [User::class, Folder::class, Set::class, Term::class], version = 9)
+@Database(entities = [User::class, Folder::class, Set::class, Term::class], version = 12)
 abstract class StudyNotesDatabase : RoomDatabase(){
 
     abstract fun dao() : StudyNotesDao

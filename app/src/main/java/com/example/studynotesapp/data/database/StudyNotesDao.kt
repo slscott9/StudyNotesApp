@@ -10,10 +10,6 @@ import kotlinx.coroutines.flow.Flow
 interface StudyNotesDao {
 
 //insert sets
-
-
-
-
     @Insert
     suspend fun insertSet(set : Set) : Long
 
@@ -48,6 +44,7 @@ interface StudyNotesDao {
 
 
 
+    @Transaction
     @Query("select * from folder_table where folderId =:folderId")
     fun getFolderSetsWithId(folderId : Long) : Flow<List<FolderwithSets>>
 
@@ -55,6 +52,7 @@ interface StudyNotesDao {
     fun getAllFolders() : Flow<List<Folder>>
 
 
+    @Transaction
     @Query("select * from folder_table where folderId = :folderId")
     fun getFolderWithId(folderId: Long) : LiveData<FolderwithSets>
 
@@ -66,6 +64,7 @@ interface StudyNotesDao {
     @Query("select * from set_table")
     fun getAllSets() : Flow<List<Set>>
 
+    @Transaction
     @Query("select * from set_table where setId =:setId")
     fun getSetTermsWithId(setId: Long) : LiveData<SetWithTerms>
 

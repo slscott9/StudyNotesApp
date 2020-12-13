@@ -16,6 +16,7 @@ import com.example.studynotesapp.data.repo.Repository
 import com.example.studynotesapp.data.repo.RepositoryImpl
 import com.example.studynotesapp.network.StudyNotesApi
 import com.example.studynotesapp.network.utils.BasicAuthInterceptor
+import com.example.studynotesapp.network.utils.ResponseHandler
 import com.example.studynotesapp.other.Constants.BASE_URL
 import com.example.studynotesapp.other.Constants.DATABASE_NAME
 import com.example.studynotesapp.other.Constants.ENCRYPTED_SHARED_PREF_NAME
@@ -103,7 +104,8 @@ So we need to make a provides method for the interceptor so we can inject an ins
     //return ServiceInterface for testing
     @Singleton
     @Provides
-    fun provideServiceImpl(notesApi: StudyNotesApi) : RemoteDataSource = RemoteDataSourceImpl(notesApi)
+    fun provideServiceImpl(notesApi: StudyNotesApi, responseHandler: ResponseHandler) : RemoteDataSource
+        = RemoteDataSourceImpl(notesApi, responseHandler)
 
 
     @Singleton
@@ -142,4 +144,7 @@ So we need to make a provides method for the interceptor so we can inject an ins
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
+    @Provides
+    fun provideResponseHandler() : ResponseHandler = ResponseHandler()
 }

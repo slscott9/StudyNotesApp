@@ -1,10 +1,13 @@
 package com.example.studynotesapp.login
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.studynotesapp.BaseFragment
@@ -32,6 +35,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
         btnLogin.setOnClickListener {
+            hideSoftKeyboard(it)
             viewModel.login(etUsername.text.toString(), etPassword.text.toString())
         }
 
@@ -44,6 +48,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     }
 
                     Status.ERROR -> {
+                        loginProgressBar.visibility = View.GONE
                         showSnackBar(it.message ?: "Unknown error occurred")
                     }
 
@@ -53,6 +58,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 }
             }
         }
+    }
+
+    fun hideSoftKeyboard(view: View) {
+        val imm =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 

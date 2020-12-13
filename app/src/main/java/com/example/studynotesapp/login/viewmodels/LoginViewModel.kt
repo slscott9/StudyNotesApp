@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studynotesapp.data.repo.Repository
 import com.example.studynotesapp.network.dto.requests.AccountRequest
+import com.example.studynotesapp.network.dto.responses.ServerResponse
 import com.example.studynotesapp.other.Resource
 import kotlinx.coroutines.launch
 
@@ -14,8 +15,8 @@ class LoginViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel(){
 
-    private val _loginStatus = MutableLiveData<Resource<String>>()
-    val loginStatus : LiveData<Resource<String>> = _loginStatus
+    private val _loginStatus = MutableLiveData<Resource<ServerResponse>>()
+    val loginStatus : LiveData<Resource<ServerResponse>> = _loginStatus
 
     fun login(userName: String, password: String){
 
