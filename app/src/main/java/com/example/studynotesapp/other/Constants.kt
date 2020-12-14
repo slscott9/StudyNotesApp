@@ -10,7 +10,7 @@ object Constants {
 
 //    const val BASE_URL = "http://studynotes6-env.eba-bdssvaau.us-east-2.elasticbeanstalk.com"
 
-        const val BASE_URL = "https://192.168.1.2:5000"
+        const val BASE_URL = "http://192.168.1.2:5000"
 
 
 //    const val BASE_URL = "https://172.20.10.2:8082"

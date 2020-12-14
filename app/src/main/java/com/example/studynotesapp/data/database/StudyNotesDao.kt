@@ -71,6 +71,10 @@ interface StudyNotesDao {
     @Query("select * from term_table where setId = :setId")
     fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
 
+    @Query("select * from set_table where setName like '%' || :searchQuery || '%'")
+    fun getSearchedSets(searchQuery: String) : Flow<List<Set>>
+
+
 
 }
 

@@ -48,6 +48,9 @@ interface LocalDataSource {
 
     fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
 
+    fun getSearchedSets(searchQuery: String) : Flow<List<Set>>
+
+
 
 
 }

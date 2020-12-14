@@ -14,6 +14,8 @@ import com.example.studynotesapp.other.Resource
 import com.example.studynotesapp.other.Status
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -37,83 +39,46 @@ class RepositoryImpl @Inject constructor(
        remoteDataSource.login(loginRequest)
     }
 
+
+    /*
+        STOPPED HEREEEE
+     */
     override suspend fun addFolder(addFolder: AddFolder, userEmail: String): Resource<Long> = withContext(Dispatchers.IO) {
 
         val response = remoteDataSource.addFolder(addFolder, userEmail)
 
-        when(response.status){
-            Status.SUCCESS -> {
-                val id = localDataSource.insertFolder(response.data!!.asDatabaseModel())
-                Resource.success(id)
-            }
-            Status.ERROR -> Resource.error("Check network connection", -1)
-            else -> Resource.error("Something else went wrong", null)
+        return@withContext if(response.status == Status.SUCCESS){
+            val id = localDataSource.insertFolder(response.data!!.asDatabaseModel())
+            Resource.success(id)
+        }else{
+            Resource.error(response.message ?: "Check network connection", -1)
         }
-//        try {
-//            val folderResponse = remoteDataSource.addFolder(addFolder, userEmail)
-//            val folderId = localDataSource.insertFolder(folderResponse.asDatabaseModel())
-//            Timber.i("returning resource success")
-//            Resource.success(folderId)
-//        }catch (e : Exception){
-//            Timber.i("returning resource error message is ${e.message}")
-//
-//            Resource.error("Check network connection", -1)
-//        }
     }
 
     override suspend fun addSet(addSet: AddSet, userEmail: String) : Resource<Long> = withContext(Dispatchers.IO) {
-
-
         val response = remoteDataSource.addSet(addSet, userEmail)
 
-        when(response.status){
-            Status.SUCCESS -> {
-                val setId = localDataSource.insertSet(response.data!!.asDatabaseSet())
-                localDataSource.insertTerms(response.data.terms.asDatabaseTermsList(setId))
-                Resource.success(setId)
-            }
-            Status.ERROR -> Resource.error(response.message ?: "Check network connection", null)
-            else -> Resource.error("Something else went wrong", null)
+        return@withContext if(response.status == Status.SUCCESS){
+            val setId = localDataSource.insertSet(response.data!!.asDatabaseSet())
+            localDataSource.insertTerms(response.data.terms.asDatabaseTermsList(setId))
+            Resource.success(setId)
+        }else{
+            Resource.error(response.message ?: "Something else went wrong", null)
         }
-//        try {
-//            val setResponse = remoteDataSource.addSet(addSet, userEmail)
-//            val setId = localDataSource.insertSet(setResponse.asDatabaseSet())
-//            localDataSource.insertTerms(setResponse.terms.asDatabaseTermsList(setId))
-//            Resource.success(setId)
-//
-//        }catch (e : Exception) {
-//            Timber.i(e.message)
-//            Resource.error("Check network connection", -1L)
-//        }
     }
 
     override suspend fun addSetsToFolder(setList: List<Set>, setIds: List<Long>, folderId: Long): Resource<String> = withContext(Dispatchers.IO){
 
-        val setResponce = remoteDataSource.addSetToFolder(setIds, folderId)
+        val setResponse = remoteDataSource.addSetToFolder(setIds, folderId)
 
-        when(setResponce.status){
-            Status.SUCCESS -> {
-                localDataSource.insertSetList(setList)
-                localDataSource.updateFolder(setList.size, folderId)
-                Resource.success(setResponce.message)
-            }
-            Status.ERROR -> Resource.error("Check internet connection", setResponce.message)
-
-            else -> Resource.error("Something else went wrong", null)
+        return@withContext if(setResponse.status == Status.SUCCESS){
+            localDataSource.insertSetList(setList)
+            localDataSource.updateFolder(setList.size, folderId)
+            Resource.success(setResponse.message)
+        }else{
+            Resource.error("Check internet connection", setResponse.message)
         }
 
-//        try {
-//
-//            val setResponse = remoteDataSource.addSetToFolder(setIds, folderId)
-//            localDataSource.insertSetList(setList)
-//            localDataSource.updateFolder(setList.size, folderId)
-//            Resource.success(setResponse.message)
-//
-//
-//        }catch (e: Exception){
-//            Timber.i("The error message for addSetsToFolder is $e.message")
-//            Resource.error("Check internet connection", e.message)
-//        }
     }
 
     //Network Folder
@@ -121,25 +86,15 @@ class RepositoryImpl @Inject constructor(
     //Delete folder
     override suspend fun deleteFolder(folderId: Long): Resource<String> = withContext(Dispatchers.IO){
 
-        val serverResponse = remoteDataSource.deleteFolder(folderId)
+        val deleteResponse =  remoteDataSource.deleteFolder(folderId)
 
-        when(serverResponse.status){
-            Status.SUCCESS -> {
-                val folderToDelete = localDataSource.getFolder(folderId)
-                localDataSource.deleteFolder(folderToDelete)
-               Resource.success(serverResponse.message)
-            }
-            Status.ERROR -> Resource.error("Check network connection", null)
-            else -> Resource.error("Something else went wrong", null)
+        return@withContext if(deleteResponse.status == Status.SUCCESS){
+            val folderToDelete = localDataSource.getFolder(folderId)
+            localDataSource.deleteFolder(folderToDelete)
+            Resource.success(deleteResponse.message)
+        }else{
+            Resource.error(deleteResponse.message ?: "Something else went wrong", null)
         }
-//        try {
-//            val serverResponse = remoteDataSource.deleteFolder(folderId)
-//            val folderToDelete = localDataSource.getFolder(folderId)
-//            localDataSource.deleteFolder(folderToDelete)
-//            Resource.success(serverResponse.message)
-//        }catch (e : Exception){
-//            Resource.error("Check network connection", e.message)
-//        }
     }
 
 //folders
@@ -182,5 +137,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun insertSetList(setList: List<Set>) {
         localDataSource.insertSetList(setList)
+    }
+
+    override fun getSearchedSets(searchQuery: String): Flow<List<Set>> {
+        return localDataSource.getSearchedSets(searchQuery)
+                .conflate() // returns latest values
     }
 }

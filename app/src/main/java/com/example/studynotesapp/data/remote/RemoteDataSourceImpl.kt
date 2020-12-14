@@ -71,6 +71,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return try {
             responseHandler.handleSuccess {  notesApi.deleteFolder(folderId) }
         }catch (e : Exception){
+            Timber.i(e)
             responseHandler.handleException(e)
         }
     }

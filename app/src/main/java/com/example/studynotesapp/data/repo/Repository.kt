@@ -60,6 +60,8 @@ interface Repository {
 
     fun getTermsWithSetId(setId: Long) : Flow<List<Term>>
 
+    fun getSearchedSets(searchQuery: String) : Flow<List<Set>>
+
 
 //insert sets
     suspend fun insertSetList(setList : List<Set>)

@@ -66,7 +66,7 @@ class FolderOptionsBottomSheet : Fragment() {
 
         tvDelete.setOnClickListener {
             folderOptionsViewModel.deleteFolder(navArgs.folderId)
-            findNavController().navigate(R.id.folderListFragment)
+//            findNavController().navigate(R.id.folderListFragment)
         }
 
         tvAddSet.setOnClickListener {

@@ -73,4 +73,9 @@ class LocalDataSourceImpl @Inject constructor(
     override fun getTermsWithSetId(setId: Long): Flow<List<Term>> {
         return dao.getTermsWithSetId(setId)
     }
+
+    override fun getSearchedSets(searchQuery: String): Flow<List<Set>> {
+        return dao.getSearchedSets(searchQuery)
+
+    }
 }
