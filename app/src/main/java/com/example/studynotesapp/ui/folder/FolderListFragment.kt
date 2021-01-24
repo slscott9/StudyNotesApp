@@ -43,7 +43,6 @@ class FolderListFragment : Fragment() {
             findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
         })
 
-
         viewModel.folders.observe(viewLifecycleOwner){
             folderListAdapter.submitList(it.asDomainFolderList())
         }

@@ -5,4 +5,8 @@
     <dimen name="drawable_padding">24dp</dimen>
     <dimen name="text_size">16sp</dimen>
     <dimen name="normal_padding">16dp</dimen>
+
+
+    <dimen name="card_view_margins">8dp</dimen>
+    <dimen name="cv_raised_elev">3dp</dimen>
 </resources>

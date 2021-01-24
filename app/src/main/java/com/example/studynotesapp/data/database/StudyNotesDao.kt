@@ -60,7 +60,6 @@ interface StudyNotesDao {
     suspend fun getFolder(folderId: Long) : Folder
 
 //get sets
-
     @Query("select * from set_table")
     fun getAllSets() : Flow<List<Set>>
 

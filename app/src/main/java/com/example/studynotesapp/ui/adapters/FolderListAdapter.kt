@@ -23,6 +23,7 @@ class FolderListAdapter(val clickListener: FolderListListener) : ListAdapter<Dom
 
     override fun onBindViewHolder(holder: FolderListAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
+
         holder.bind(item, clickListener )
     }
 

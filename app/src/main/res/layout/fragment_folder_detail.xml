@@ -13,7 +13,6 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -39,28 +38,40 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFolderDetail"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            app:cardBackgroundColor="@color/snow"
+            app:cardCornerRadius="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFolderName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCircle">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFolderDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:background="@color/snow"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                tools:listitem="@layout/set_list_item" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvSetCount"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             setFolderTermCount="@{domainFolder}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/folderDetailAppBarLayout"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tvFolderName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFolderName"
             tools:text="Set count " />
 
         <TextView
@@ -97,12 +108,13 @@
             setFolderName="@{domainFolder}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:textColor="@color/colorPrimary"
             android:textSize="32sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/tvSetCount"
-            app:layout_constraintTop_toBottomOf="@+id/tvSetCount" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/folderDetailAppBarLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

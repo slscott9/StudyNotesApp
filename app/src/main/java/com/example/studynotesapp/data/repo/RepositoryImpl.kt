@@ -39,10 +39,7 @@ class RepositoryImpl @Inject constructor(
        remoteDataSource.login(loginRequest)
     }
 
-
-    /*
-        STOPPED HEREEEE
-     */
+    
     override suspend fun addFolder(addFolder: AddFolder, userEmail: String): Resource<Long> = withContext(Dispatchers.IO) {
 
         val response = remoteDataSource.addFolder(addFolder, userEmail)

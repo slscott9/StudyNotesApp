@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
 
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,20 +70,15 @@ class HomeFragment : Fragment() {
         setupAdapters()
         setupObservers()
         setupRecyclerViews()
-
-
-
     }
 
     private fun setupRecyclerViews(){
         binding.rvSets.apply {
             adapter = setListAdapter
-            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.rvFolderList.apply {
             adapter = folderListAdapter
-            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 

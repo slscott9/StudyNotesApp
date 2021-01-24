@@ -16,11 +16,10 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="8dp"
-        app:cardElevation="16dp"
-        app:cardCornerRadius="8dp"
+        android:layout_margin="@dimen/card_view_margins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/cv_raised_elev"
         android:onClick="@{() -> clickListener.onClick(domainFolder)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,21 +47,21 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/ivFolder"
                 app:layout_constraintTop_toBottomOf="@+id/ivFolder"
-                tools:text="New folder" />
+                tools:text="Computer Science" />
 
             <TextView
                 android:id="@+id/tvCircle"
+                setUserInitial="@{domainFolder}"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-                setUserInitial="@{domainFolder}"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvFolderName"
                 app:layout_constraintTop_toBottomOf="@+id/tvFolderName"

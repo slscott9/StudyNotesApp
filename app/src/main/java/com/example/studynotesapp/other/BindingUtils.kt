@@ -26,7 +26,7 @@ fun TextView.setSetName(item: DomainSet?){
 
 @BindingAdapter("setFolderTermCount")
 fun TextView.setFolderTermCount(item: DomainFolder?){
-    item?.setCount?.let { text = item.setCount }
+    item?.setCount?.let { text = "${item.setCount} Sets" }
 }
 
 @BindingAdapter("setUserInitial")

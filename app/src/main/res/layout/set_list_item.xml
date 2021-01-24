@@ -13,20 +13,19 @@
     </data>
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="16dp"
-        app:cardCornerRadius="8dp"
+        app:cardElevation="@dimen/cv_raised_elev"
+        android:layout_margin="@dimen/card_view_margins"
         android:onClick="@{() -> clickListener.onClick(domainSet)}">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/rv_hilight"
             android:id="@+id/clSetListItem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/rv_hilight">
 
             <TextView
                 android:id="@+id/tvSetName"
@@ -34,20 +33,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Set name" />
+                tools:text="Operating Systems" />
 
             <TextView
                 android:id="@+id/tvTermCount"
                 setTermCount="@{domainSet}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintStart_toStartOf="@+id/tvSetName"
                 app:layout_constraintTop_toBottomOf="@+id/tvSetName"
                 tools:text="16" />
@@ -55,27 +54,28 @@
             <TextView
                 android:id="@+id/tvCircle"
                 setUserInitial="@{domainSet}"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvTermCount"
-                app:layout_constraintTop_toBottomOf="@+id/tvTermCount" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTermCount"
+                tools:text="N" />
 
             <TextView
                 android:id="@+id/tvUserName"
                 setUserName="@{domainSet}"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvCircle"
                 app:layout_constraintStart_toEndOf="@+id/tvCircle"
                 app:layout_constraintTop_toTopOf="@+id/tvCircle"
@@ -83,6 +83,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
