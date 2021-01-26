@@ -16,12 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -127,7 +132,11 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.cardview.widget.CardView>
+
         </androidx.core.widget.NestedScrollView>
+
+
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
